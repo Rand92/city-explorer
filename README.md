@@ -21,13 +21,13 @@ This App Contains a Form on it's first page so the user can type the name of the
 
 Name of feature: API 
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 2 hours
 
-Start time: 
+Start time: 2:00pm
 
-Finish time: 
+Finish time: 6:00 pm
 
-Actual time needed to complete:
+Actual time needed to complete: 4 hours
 
 
 ## Credit and Collaborations
