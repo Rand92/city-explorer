@@ -3,6 +3,7 @@ import Location from './components/Location';
 import FormCity from './components/FormCity';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Table } from 'react-bootstrap'
 
 
 export class App extends Component {
@@ -15,6 +16,7 @@ export class App extends Component {
       longitude:"",
       showData:false,
       showMap:"random",
+      weather:[],
     }
   }
   handleLocation=(e)=>{
@@ -41,7 +43,13 @@ export class App extends Component {
         showData:true,
        showMap:"show"
       })
-    })
+    }).then(()=>{
+      axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}`).then(res=>{
+        this.setState({
+          weather:res.data
+        })
+      });
+    });
   }
   render() {
     return (
@@ -57,10 +65,36 @@ export class App extends Component {
             
           />
         }
+        
         <img className={this.state.showMap} src = {`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}
         &center=${this.state.latitude},${this.state.longitude} &zoom=1-18`}/>
+     
+     {this.state.weather.map(item=>{
+                    return <>
+                    {/* <h1>{item.date}</h1>
+                    <h1>{item.description}</h1> */}
+                     <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                         
+                            <th>Date</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                           
+                            <td> <h1>{item.date}</h1></td>
+                            <td>  <h1>{item.description}</h1></td>
+                        </tr>
+                    </tbody>
+                </Table>
+                    </>
+                })
+                }
       </div>
     )
+    
   }
 }
 

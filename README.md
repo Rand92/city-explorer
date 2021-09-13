@@ -29,6 +29,5 @@ Finish time: 6:00 pm
 
 Actual time needed to complete: 4 hours
 
-
 ## Credit and Collaborations
 To *My partner in this Lab* **[Yasseen Saeed](https://github.com/yaseen1998)**
