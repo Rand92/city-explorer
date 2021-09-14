@@ -25,6 +25,7 @@ export class Location extends Component {
                         </tr>
                     </tbody>
                 </Table>
+                
             </div>
         )
     }
