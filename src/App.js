@@ -44,7 +44,7 @@ export class App extends Component {
        showMap:"show"
       })
     }).then(()=>{
-      axios.get(`http://${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}`).then(res=>{
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}`).then(res=>{
         this.setState({
           weather:res.data
         })
