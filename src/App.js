@@ -17,12 +17,15 @@ export class App extends Component {
       showData:false,
       showMap:"random",
       weather:[],
+      city:"",
+      movie:[],
     }
   }
   handleLocation=(e)=>{
     let display_name=e.target.value;
     this.setState({
-      display_name:display_name
+      display_name:display_name,
+      city:display_name
     })
   }
   handleSubmit=(e)=>{
@@ -49,7 +52,14 @@ export class App extends Component {
           weather:res.data
         })
       });
-    });
+    }).then(()=>{
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies?query=${this.state.city}`).then(res=>{
+        this.setState({
+          movie:res.data
+        })
+        console.log(this.state.movie)
+      });
+    })
   }
   render() {
     return (
@@ -86,6 +96,40 @@ export class App extends Component {
                            
                             <td> <h1>{item.date}</h1></td>
                             <td>  <h1>{item.description}</h1></td>
+                        </tr>
+                    </tbody>
+                </Table>
+                    </>
+                })
+                }
+                {this.state.movie.map(item=>{
+                    return <>
+                    {/* <h1>{item.date}</h1>
+                    <h1>{item.description}</h1> */}
+                     <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                         
+                            <th>title</th>
+                            <th>overview</th>
+                            <th>total_votes</th>
+                            <th>average_votes</th>
+                            <th>image_url</th>
+                            <th>popularity</th>
+                            <th>released_on</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                           
+                            <td> <h1>{item.title}</h1></td>
+                            <td>  <h1>{item.overview}</h1></td>
+                            <td> <h1>{item.total_votes}</h1></td>
+                            <td>  <h1>{item.average_votes}</h1></td>
+                            <td> <h1>{item.image_url}</h1></td>
+                            <td>  <h1>{item.popularity}</h1></td>
+                            <td> <h1>{item.released_on}</h1></td>
+                          
                         </tr>
                     </tbody>
                 </Table>
