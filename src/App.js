@@ -4,7 +4,7 @@ import FormCity from './components/FormCity';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table } from 'react-bootstrap'
-
+import Movie from './components/Movie';
 
 export class App extends Component {
   constructor(props){
