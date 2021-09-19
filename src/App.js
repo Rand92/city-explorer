@@ -51,13 +51,13 @@ export class App extends Component {
        showMap:"show"
       })
     }).then(()=>{
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}`).then(res=>{
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/weather?lat=${this.state.latitude}&lon=${this.state.longitude}`).then(result=>{
         this.setState({
-          weather:res.data
+          weather:result.data
         })
       });
     }).then(()=>{
-      axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies?query=${this.state.city}`).then(res=>{
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/movie?query=${this.state.city}`).then(res=>{
         this.setState({
           movie:res.data
         })
